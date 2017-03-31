@@ -1,4 +1,4 @@
-OBJ = main.o wifiscan.o
+OBJ = main.o wifiscan.o screen.o
 APPNAME = wifi.a
 
 $(APPNAME) : $(OBJ)

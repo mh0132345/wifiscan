@@ -13,6 +13,7 @@ void read_data(void);
 void remove_spaces(char[]);
 void get_MAC(char [], char []);
 double get_freq(char []);
+int get_channel(char[]);
 double get_slevel(char[]);
 void get_essid(char[],char[]);
 void display_network(WIFI_INFO);

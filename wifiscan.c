@@ -24,6 +24,7 @@ void read_data(void){
 			c++;
 			if(c==1){
 				wf.frequency = get_freq(line);
+				wf.channel = get_channel(line);
 			} 
 			if(c==2){
 				wf.slevel = get_slevel(line);
@@ -40,10 +41,12 @@ void read_data(void){
 
 void display_network(WIFI_INFO wf){
 	printf("MAC: %s\n",wf.MAC);
+	printf("Channel: %d\n",wf.channel);
 	printf("Frequency: %.3f GHz\n",wf.frequency);
 	printf("Signal level: %.0f dBm\n", wf.slevel);
 	printf("ESSID: %s\n\n", wf.essid); 
 }
+
 void remove_spaces(char s[]){
 	int i, len = strlen(s);
 	for(i=0;i<len;i++){
@@ -61,12 +64,19 @@ void get_MAC(char line[],char mac[]){
 
 double get_freq(char line[]){
 	double freq; 
-	char name_freq[6]; 
 	char *find;
 	find = strstr (line,"Frequency");
 	freq = atof(strncpy(line, find+10,5));
 	 //freq = 2.413 for example, 10 is number of word we do not care
 	return freq; 
+}
+
+int get_channel(char line[]){
+	int channel;
+	char *find;
+	find = strstr(line, "Channel");
+	channel = atoi(strncpy(line,find+8,1));
+	return channel; 
 }
 
 double get_slevel(char line[]){
