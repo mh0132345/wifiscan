@@ -8,7 +8,6 @@ int main(void){
 	while(1){
 		system(CMD); //open "scan.txt" and visualize it;
 		read_data();
-		display_channel();
 		sleep(5);
 	}
 }

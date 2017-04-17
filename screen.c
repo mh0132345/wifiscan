@@ -1,11 +1,6 @@
 #include "screen.h"
 #include <stdio.h>
 
-void display_channel(void){
-	int i;
-	for(i=1;i<=11;i++) printf("\t%d",i);
-	printf("\n");
-}
 void setFGcolor(int fg){
 	printf("\033[%d;1m", fg);
 	fflush(stdout);
@@ -37,4 +32,20 @@ void displayBar(double rms, int col){
 #endif
 	}
 	fflush(stdout);
+}
+
+void drawRect(int top, int left, int height, int width){
+	int i;
+#ifdef UNICODE
+	for(i=left; i<left+width; i++){
+		gotoXY(top, i);
+		printf("%s", BAR);
+	}
+	for(i=top; i<top+height; i++){
+		gotoXY(i, left);
+		printf("%s", BAR);
+		gotoXY(i, left+width);
+		printf("%s", BAR);
+	}
+#endif
 }
